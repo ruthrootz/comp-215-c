@@ -1,3 +1,6 @@
+// Ruth Oldja
+// purpose: print out a train
+
 #include <stdio.h>
 
 int main(void) {
