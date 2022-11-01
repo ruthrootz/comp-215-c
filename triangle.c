@@ -1,5 +1,6 @@
-// Ruth Oldja
-// purpose: print out a train
+// name: Ruth Oldja
+// purpose: output a triangle of n rows, where n is user input, an integer between 1 and 20 (inclusive)
+// date: 11/1/2022
 
 #include <stdio.h>
 
