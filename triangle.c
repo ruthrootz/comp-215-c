@@ -1,12 +1,14 @@
-// name: Ruth Oldja
-// purpose: output a triangle of n rows, where n is user input, an integer between 1 and 20 (inclusive)
-// date: 11/1/2022
+/*
+    name: Ruth Oldja
+    date: 11/1/2022
+    purpose: output a triangle of n rows, where n is user input, an integer between 1 and 20 (inclusive)
+*/
 
 #include <stdio.h>
 
 int main(void) {
   // get user input
-  int rows;
+  int rows = 0;
   printf("Enter a number [1, 20]: ");
   scanf("%d", &rows);
 
