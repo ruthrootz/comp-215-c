@@ -18,7 +18,7 @@ int main(void) {
   return 0;
 }
 
-int[] htoi(char s[])
+int[] htoi(char hexString[])
 {
   // create a new array of the same length as the input
   // check if second char is x or X
