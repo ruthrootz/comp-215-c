@@ -1,11 +1,11 @@
 /*
     name: Ruth Oldja
     date: 11/3/2022
-    purpose: convert an array of hexadecimal numbers into decimal integers
+    purpose: convert an array of hexadecimal digits into decimal integers
 */
 
 #include <stdio.h>
-#include <htoi.h>
+#include "htoi.h"
 
 int main(void) {
   // TESTS:
@@ -18,7 +18,7 @@ int main(void) {
   return 0;
 }
 
-int[] htoi(char hexString[])
+int htoi(char hexString[])
 {
   // create a new array of the same length as the input
   // check if second char is x or X

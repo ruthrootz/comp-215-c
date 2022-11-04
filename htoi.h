@@ -1,1 +1,1 @@
-int[] htoi(char hexString[]);
+int htoi(char hexString[]);
