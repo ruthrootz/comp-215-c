@@ -1,7 +1,7 @@
 /*
     name: Ruth Oldja
     date: 11/3/2022
-    purpose: convert an array of hexadecimal digits into decimal integers
+    purpose: convert an array of hexadecimal numbers into decimal integers
 */
 
 #include <stdio.h>
@@ -20,19 +20,45 @@ int main(void) {
 
 int htoi(char hexString[])
 {
-  // create a new array of the same length as the input
-  // check if second char is x or X
-    // if it is, remove first two chars
-  // loop through input (while checking for \0)
-    // convert each hexadecimal number
-    // add converted number to array
-  // return array
+  int decimalValue = 0;
+  int placeValue = 1;
+
+  for (int i = strlen(hexString); i > 0; i--)
+  {
+    if (hexString[i] == '\0')
+    {
+      continue;
+    }
+    else if (hexString[i] == 'x' || hexString[i] == 'X')
+    {
+      break;
+    }
+
+    int convertedDigit = hexToDecimal(hexString[i], placeValue);
+    placeValue *= 16;
+    decimalValue += convertedDigit;
+  }
+
+  return decimalValue;
 }
 
-/*
- * call hexToDecimal(char hex[])
- * ^ on each string
- * ignore 0x and 0X
- * in hexToDecimal: loop through array from the end, multiple each digit by 16 ^ i, where i starts at 0 and goes up each loop through
- * convert each char into an int: char value -48 for 0-9, -55 for A-F, -87 for a-f
- */
+int hexToDecimal(char hexDigit, int placeValue)
+{
+  int intValueOfChar = 0;
+  if (hexDigit >= 'a' && hexDigit <= 'f')
+  {
+    intValueOfChar = hexDigit - 87;
+  }
+  else if (hexDigit >= 'A' && hexDigit <= 'F')
+  {
+    intValueOfChar = hexDigit - 55;
+  }
+  else if (hexDigit >= 0 && hexDigit <= 9)
+  {
+    intValueOfChar = hexDigit - 48;
+  }
+
+  int decimalValue = hexDigit * placeValue;
+
+  return decimalValue;
+}
