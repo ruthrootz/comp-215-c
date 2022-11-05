@@ -18,6 +18,7 @@ int main(void) {
     printf("%d\n", htoi("ff")); // BUG
     printf("%d\n", htoi("FF"));
     printf("%d\n", htoi("0x12345"));
+    printf("%d\n", htoi("0x1a2B3Cf"));
     printf("%d\n", htoi("FFff"));
     printf("%d\n", htoi("0X0"));
     
