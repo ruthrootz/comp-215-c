@@ -51,7 +51,7 @@ int hexToDecimal(char hexDigit, int placeValue)
     
   if (hexDigit >= 'a' && hexDigit <= 'f')
   {
-    intValueOfChar = hexDigit - 107;
+    intValueOfChar = hexDigit - 87;
   }
   else if (hexDigit >= 'A' && hexDigit <= 'F')
   {
