@@ -11,7 +11,8 @@
 // global variable that stores the currently parsed token
 struct Token currentToken;
 
-int main(void) {
+int main(void)
+{
     // get user input
     char input[21];
     scanf("Enter a mathematical expression: %s", input);
@@ -52,4 +53,16 @@ void command()
     {
 		printf("Command Error\n");	
 	}
+}
+
+int expr(void)
+{
+
+	// call term function and store result
+
+	// while loop which checks the token type (global variable being updated by getToken) for plus 	
+	// or minus
+	
+	// if plus, call the match function
+	// if plus, result += term();  // get next term
 }
