@@ -21,8 +21,8 @@ int main(void) {
 
 void parse(char input[21])
 {
-    // call getToken()
-    // call command()
+    getToken();
+    command();
 }
 
 void getToken()
@@ -36,4 +36,20 @@ void getToken()
            //  token.value=10*token.value+currentCharacter - '0';
         //     currentCharacter=getchar();  
         // }
+}
+
+void command()
+{
+    // start parsing by calling the method for the top level of the CFG
+	int result = expr();
+	
+	// command is done when token type is the end of line
+	if (token.type == EOL)
+    {
+		printf("\nresult: %d\n", result);
+	}
+	else
+    {
+		printf("Command Error\n");	
+	}
 }
