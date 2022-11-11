@@ -21,13 +21,23 @@ int main(void) {
 
 void parse(char input[21])
 {
-    // for each char, getToken:
-        // loads up currentToken
-        // prints token
-    // get from 6*2-(3+4) to 
+    // for each char
+        // skip if it's whitespace
+            // int currentCharacter = 0;
+            // while ((currentCharacter=getchar()) == ' ');
+        // get all digits if it's a number
+            // while(isdigit(currentCharacter)){
+	           //  token.value=10*token.value+currentCharacter - '0';
+            //     currentCharacter=getchar();  
+            // }
+        // call getToken
+    // 
+
+    // example expression: 6 * 2 - ( 3 + 4 )
 }
 
 void getToken()
 {
-    
+    // create new Token
+    // assign it to global variable
 }
