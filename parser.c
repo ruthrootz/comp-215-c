@@ -57,7 +57,6 @@ void command()
 
 int expr(void)
 {
-
 	// call term function and store result
 
 	// while loop which checks the token type (global variable being updated by getToken) for plus 	
