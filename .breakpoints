@@ -7,6 +7,14 @@
         "version": 578,
         "index": 0
       }
+    ],
+    "parser.c": [
+      {
+        "id": "253f1722-6367-4503-ace0-0cab55f70904",
+        "line": 36,
+        "version": 780,
+        "index": 710
+      }
     ]
   }
 }

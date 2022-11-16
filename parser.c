@@ -1,6 +1,6 @@
 /*
     name: Ruth Oldja
-    date: 11/10/2022
+    date: 11/16/2022
     purpose: parse mathematical expression and calculate result using EBNF grammar
 */
 
@@ -8,15 +8,12 @@
 #include <math.h>
 #include "parser.h"
 
-// global variable that stores the currently parsed token
+// global variable that stores the current token
 struct Token currentToken;
 
 int main(void)
 {
-    // get user input
-    char input[21];
-    scanf("Enter a mathematical expression: %s", input);
-    parse(input);
+    parse();
     return 0;
 }
 
@@ -28,15 +25,53 @@ void parse(char input[21])
 
 void getToken()
 {
-    // for each char...
-        // skip if it's whitespace
-        // int currentCharacter = 0;
-        // while ((currentCharacter=getchar()) == ' ');
-        // get all digits if it's a number
-        // while(isdigit(currentCharacter)){
-           //  token.value=10*token.value+currentCharacter - '0';
-        //     currentCharacter=getchar();  
-        // }
+    int currentCharacter = 0;
+    while ((currentCharacter = getchar()) == ' ');
+    while(isdigit(currentCharacter))
+    {
+        currentToken.type = NUMBER;
+	    //Convert character in respective digit
+    	currentToken.value = 10 * currentToken.value + currentCharacter - '0';
+        // read in next character
+        currentCharacter = getchar();  
+    }
+
+    //  done reading all digits, out of while loop, must have found a non-digit, so push last character read in 
+    // back to standard input
+    ungetc(currentCharacter, stdin);
+
+    switch (currentCharacter)
+    {
+        case '+':
+            currentToken.type = PLUS;
+            break;
+        case '-':
+            currentToken.type = MINUS;
+            break;
+        case '/':
+            currentToken.type = DIVIDE;
+            break;
+        case '*':
+            currentToken.type = MULTIPLY;
+            break;
+        case '%':
+            currentToken.type = REMAINDER;
+            break;
+        case '^':
+            currentToken.type = POWER;
+            break;
+        case '(':
+            currentToken.type = LPAREN;
+            break;
+        case ')':
+            currentToken.type = RPAREN;
+            break;
+        case '\0':
+            currentToken.type = EOL;
+            break;
+        default:
+            currentToken.type = ERROR;
+    }
 }
 
 void command()
@@ -45,7 +80,7 @@ void command()
 	int result = expr();
 	
 	// command is done when token type is the end of line
-	if (token.type == EOL)
+	if (currentToken.type == EOL)
     {
 		printf("\nresult: %d\n", result);
 	}
