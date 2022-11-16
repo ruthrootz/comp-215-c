@@ -27,6 +27,7 @@ void parse(char input[21])
 void getToken()
 {
     int currentCharacter = 0;
+    // TODO: see if this actually works...
     while ((currentCharacter = getchar()) == ' ');
     while(isdigit(currentCharacter))
     {
