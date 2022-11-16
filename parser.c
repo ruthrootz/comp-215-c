@@ -13,6 +13,7 @@ struct Token currentToken;
 
 int main(void)
 {
+    // TODO: add comments
     parse();
     return 0;
 }
@@ -30,18 +31,15 @@ void getToken()
     while(isdigit(currentCharacter))
     {
         currentToken.type = NUMBER;
-	    //Convert character in respective digit
     	currentToken.value = 10 * currentToken.value + currentCharacter - '0';
-        // read in next character
         currentCharacter = getchar();  
     }
 
-    //  done reading all digits, out of while loop, must have found a non-digit, so push last character read in 
-    // back to standard input
     ungetc(currentCharacter, stdin);
 
     switch (currentCharacter)
     {
+        // TODO: print out tokens
         case '+':
             currentToken.type = PLUS;
             break;
@@ -76,10 +74,8 @@ void getToken()
 
 void command()
 {
-    // start parsing by calling the method for the top level of the CFG
 	int result = expr();
 	
-	// command is done when token type is the end of line
 	if (currentToken.type == EOL)
     {
 		printf("\nresult: %d\n", result);
