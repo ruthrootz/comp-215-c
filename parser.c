@@ -86,13 +86,43 @@ void command()
 	}
 }
 
-int expr(void)
+int expr()
 {
 	// call term function and store result
 
-	// while loop which checks the token type (global variable being updated by getToken) for plus 	
-	// or minus
+	// while loop which checks the token type (global variable being updated by getToken) for plus or minus
 	
 	// if plus, call the match function
-	// if plus, result += term();  // get next term
+	// if plus, result += term();
+    // get next term
+}
+
+int term()
+{
+
+}
+
+int power()
+{
+
+}
+
+int factor()
+{
+
+}
+
+int factor1()
+{
+
+}
+
+void error()
+{
+
+}
+
+void match(TokenType type)
+{
+
 }
