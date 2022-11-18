@@ -54,24 +54,31 @@ void getToken()
             break;
         case '-':
             currentToken.type = MINUS;
+            printf("- --- MINUS\n");
             break;
         case '/':
             currentToken.type = DIVIDE;
+            printf("/ --- DIVIDE\n");
             break;
         case '*':
             currentToken.type = MULTIPLY;
+            printf("* --- MULTIPLY\n");
             break;
         case '%':
             currentToken.type = REMAINDER;
+            printf("% --- REMAINDER\n");
             break;
         case '^':
             currentToken.type = POWER;
+            printf("^ --- POWER\n");
             break;
         case '(':
             currentToken.type = LPAREN;
+            printf("( --- LPAREN\n");
             break;
         case ')':
             currentToken.type = RPAREN;
+            printf(") --- RPAREN\n");
             break;
         case '\0':
             currentToken.type = EOL;
