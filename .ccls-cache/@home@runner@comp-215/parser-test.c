@@ -12,6 +12,8 @@
 // global variable that stores the current token
 struct Token currentToken;
 
+char testExpression[] = "51+5";
+
 int main(void)
 {
     // TODO: add comments
@@ -22,30 +24,25 @@ int main(void)
 void parse(char input[21])
 {
     getToken();
-    command();
+    // command();
 }
 
 void getToken()
 {
-    int currentCharacter = 0;
+    // int currentChar = '0';
+    int i = 0;
+    int testCurrentChar = testExpression[i];
 
-    int testChar = getchar();
-    printf("%c", testChar);
-    ungetc(testChar, stdin);
-    
-    while ((currentCharacter = getchar()) == ' ');
-    while (isdigit(currentCharacter))
+    while (isdigit(testCurrentChar))
     {
+        printf("test char is digit");
         currentToken.type = NUMBER;
-    	currentToken.value = 10 * currentToken.value + currentCharacter - '0';
-        currentCharacter = getchar();  
+        currentToken.value = 10 * currentToken.value + testCurrentChar - '0';
+        testCurrentChar = testExpression[i++];  
     }
 
-    ungetc(currentCharacter, stdin);
-
-    switch (currentCharacter)
+    switch (testCurrentChar)
     {
-        // TODO: print out tokens
         case '+':
             currentToken.type = PLUS;
             break;

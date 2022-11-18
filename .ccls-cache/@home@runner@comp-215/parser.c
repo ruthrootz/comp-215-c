@@ -27,7 +27,11 @@ void parse(char input[21])
 
 void getToken()
 {
-    char currentCharacter = '0';
+    int currentCharacter = 0;
+
+    int testChar = getchar();
+    printf("%c", testChar);
+    ungetc(testChar, stdin);
     
     while ((currentCharacter = getchar()) == ' ');
     while (isdigit(currentCharacter))
@@ -82,9 +86,9 @@ void command()
     {
 		printf("\nresult: %d\n", result);
 	}
-	else
+	else if (currentToken.type == ERROR)
     {
-		printf("Command Error\n");	
+		printf("Command Error!!\n");	
 	}
 }
 
