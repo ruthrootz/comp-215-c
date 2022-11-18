@@ -30,7 +30,7 @@ void getToken()
     int currentCharacter = 0;
     
     while ((currentCharacter = getchar()) == ' ');
-    while(isdigit(currentCharacter))
+    while (isdigit(currentCharacter))
     {
         currentToken.type = NUMBER;
     	currentToken.value = 10 * currentToken.value + currentCharacter - '0';
