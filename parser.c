@@ -6,6 +6,7 @@
 
 #include <stdio.h>
 #include <math.h>
+#include <ctype.h>
 #include "parser.h"
 
 // global variable that stores the current token
@@ -89,18 +90,28 @@ void command()
 
 int expr()
 {
-	// call term function and store result
+    int result = term();
 
-	// while loop which checks the token type (global variable being updated by getToken) for plus or minus
-	
-	// if plus, call the match function
-	// if plus, result += term();
-    // get next term
+    while (currentToken.type == PLUS || currentToken.type == MINUS)
+    {
+        if (currentToken.type == PLUS)
+        {
+            match(PLUS);
+            result += term();
+        }
+        else
+        {
+            match(MINUS);
+            result -= term();
+        }
+    }
+
+    getToken();
 }
 
 int term()
 {
-
+    
 }
 
 int power()
@@ -125,5 +136,8 @@ void error()
 
 void match(TokenType type)
 {
-
+    if (currentToken.type == type)
+    {
+        getToken();
+    }
 }

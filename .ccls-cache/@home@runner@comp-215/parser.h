@@ -3,7 +3,7 @@ typedef enum
     PLUS,
     MINUS,
     DIVIDE,
-    MULT,
+    MULTIPLY,
     REMAINDER,
     POWER,
     LPAREN,
@@ -17,3 +17,14 @@ struct Token {
     TokenType type;
     int value;
 };
+
+void parse();
+void getToken();
+void command();
+int expr();
+int term();
+int power();
+int factor();
+int factor1();
+void error();
+void match(TokenType tkType);
