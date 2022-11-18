@@ -97,7 +97,7 @@ void command()
 	}
 	else if (currentToken.type == ERROR)
     {
-		printf("Command Error!!\n");	
+		printf("Command Error!!\n");
 	}
 }
 
