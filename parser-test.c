@@ -29,22 +29,28 @@ void parse(char input[21])
 
 void getToken()
 {
-    // int currentChar = '0';
     int i = 0;
-    int testCurrentChar = testExpression[i];
+    int currentChar = testExpression[i];
 
-    while (isdigit(testCurrentChar))
+    while (isdigit(currentChar))
     {
-        printf("test char is digit");
         currentToken.type = NUMBER;
-        currentToken.value = 10 * currentToken.value + testCurrentChar - '0';
-        testCurrentChar = testExpression[i++];  
+        currentToken.value = 10 * currentToken.value + currentChar - '0';
+        if (!isdigit(testExpression[i + 1]))
+        {
+            if (isdigit(currentChar))
+            {        
+                printf("%d --- NUMBER\n", currentToken.value);
+            }
+        }
+        currentChar = testExpression[i++];
     }
 
-    switch (testCurrentChar)
+    switch (currentChar)
     {
         case '+':
             currentToken.type = PLUS;
+            printf("+ --- PLUS\n");
             break;
         case '-':
             currentToken.type = MINUS;

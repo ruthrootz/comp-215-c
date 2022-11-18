@@ -8,12 +8,26 @@
         "index": 0
       }
     ],
+    "parser-test.c": [
+      {
+        "id": "bc543756-4f0d-4018-9432-ad6e6d613f7f",
+        "line": 49,
+        "version": 398,
+        "index": 1020
+      },
+      {
+        "id": "9ed81c9e-de74-411a-a5a4-6f9c92a1701f",
+        "line": 51,
+        "version": 398,
+        "index": 1022
+      }
+    ],
     "parser.c": [
       {
         "id": "8043267e-d363-48fb-b67e-9af82439da0d",
         "line": 32,
-        "version": 966,
-        "index": 471
+        "version": 969,
+        "index": 546
       }
     ]
   }
