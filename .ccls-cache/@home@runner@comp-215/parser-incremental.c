@@ -11,7 +11,7 @@
 
 // global variable that stores the current token
 struct Token currentToken;
-
+int currentIndex = 0;
 char testExpression[] = "51+5";
 
 int main(void)
@@ -29,21 +29,20 @@ void parse(char input[21])
 
 void getToken()
 {
-    int i = 0;
-    int currentChar = testExpression[i];
+    int currentChar = testExpression[currentIndex];
 
     while (isdigit(currentChar))
     {
         currentToken.type = NUMBER;
         currentToken.value = 10 * currentToken.value + currentChar - '0';
-        if (!isdigit(testExpression[i + 1]))
+        if (!isdigit(testExpression[currentIndex + 1]))
         {
             if (isdigit(currentChar))
             {        
                 printf("%d --- NUMBER\n", currentToken.value);
             }
         }
-        currentChar = testExpression[i++];
+        currentChar = testExpression[currentIndex++];
     }
 
     switch (currentChar)
@@ -90,7 +89,7 @@ void getToken()
 
 void command()
 {
-	int result = expr();
+	int result = expr(); // QUESTION: here or at the bottom of the method?
 	
 	if (currentToken.type == EOL)
     {
