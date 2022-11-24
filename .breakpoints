@@ -11,33 +11,33 @@
     "parser-incremental.c": [
       {
         "id": "388eb225-3143-4ad0-9d65-cf2689f9fada",
-        "line": 34,
-        "version": 133,
-        "index": 548
+        "line": 36,
+        "version": 547,
+        "index": 592
       },
       {
         "id": "db7a023c-ace3-43d1-8f2c-15f5c3aae79b",
-        "line": 48,
-        "version": 218,
-        "index": 974
+        "line": 50,
+        "version": 547,
+        "index": 1011
       },
       {
         "id": "f4642e13-610e-4aae-98e6-40123d3eee97",
-        "line": 91,
-        "version": 207,
-        "index": 2080
+        "line": 94,
+        "version": 547,
+        "index": 2121
       },
       {
         "id": "c94909a5-138e-4539-81a9-79a1078b2362",
-        "line": 105,
-        "version": 207,
-        "index": 2324
+        "line": 108,
+        "version": 547,
+        "index": 2361
       },
       {
         "id": "dc42f689-6060-4d56-897c-4ce0d9632b7a",
-        "line": 110,
-        "version": 207,
-        "index": 2472
+        "line": 113,
+        "version": 547,
+        "index": 2509
       }
     ],
     "parser-test.c": [

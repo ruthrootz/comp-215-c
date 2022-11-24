@@ -120,7 +120,7 @@ int expr()
     }
     term(); // call term() without doing anything because we're not +/- in this case
     
-    return result;
+    // return result;
 }
 
 int term()
@@ -132,6 +132,11 @@ int term()
             match(MULTIPLY);
             result *= power();
         }
+        else if (currentToken.type == REMAINDER)
+        {
+            match(REMAINDER);
+            result %= power();
+        }
         else
         {
             match(DIVIDE);
@@ -139,16 +144,18 @@ int term()
         }
     }
     power();
+    return result;
 }
 
 int power()
 {
-    while (currentToken.type == POWER) // TODO
+    while (currentToken.type == POWER)
     {
         match(POWER);
-        result = pow(result, power());
+        result = pow(result, power()); // TODO
     }
     factor();
+    return result;
 }
 
 int factor()
@@ -159,6 +166,7 @@ int factor()
         result = pow(result, power());
     }
     factor1();
+    return result;
 }
 
 int factor1()
@@ -168,12 +176,12 @@ int factor1()
         match(POWER);
         result = pow(result, power());
     }
-    // should just have a number left?
+    return result;
 }
 
 void error()
 {
-
+    printf("ERROR OCCURED");
 }
 
 void match(TokenType type)
