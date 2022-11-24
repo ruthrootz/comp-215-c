@@ -12,7 +12,7 @@
 // global variable that stores the current token
 struct Token currentToken;
 int currentIndex = 0;
-char testExpression[] = "51+5";
+char testExpression[] = "511+5";
 
 int main(void)
 {
@@ -37,12 +37,11 @@ void getToken()
         currentToken.value = 10 * currentToken.value + currentChar - '0';
         if (!isdigit(testExpression[currentIndex + 1]))
         {
-            if (isdigit(currentChar))
-            {        
-                printf("%d --- NUMBER\n", currentToken.value);
-            }
+            printf("%d --- NUMBER\n", currentToken.value);
+            currentChar = testExpression[++currentIndex];
+            break;
         }
-        currentChar = testExpression[currentIndex++];
+        currentChar = testExpression[++currentIndex];
     }
 
     switch (currentChar)

@@ -8,6 +8,14 @@
         "index": 0
       }
     ],
+    "parser-incremental.c": [
+      {
+        "id": "388eb225-3143-4ad0-9d65-cf2689f9fada",
+        "line": 34,
+        "version": 96,
+        "index": 551
+      }
+    ],
     "parser-test.c": [
       {
         "id": "bc543756-4f0d-4018-9432-ad6e6d613f7f",
