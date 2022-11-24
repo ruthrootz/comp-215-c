@@ -12,6 +12,7 @@
 // global variable that stores the current token
 struct Token currentToken;
 int currentIndex = 0;
+int result = 0;
 char testExpression[] = "511+5";
 
 int main(void)
@@ -24,12 +25,13 @@ int main(void)
 void parse(char input[21])
 {
     getToken();
-    // command();
+    command();
 }
 
 void getToken()
 {
     int currentChar = testExpression[currentIndex];
+    currentToken.value = 0;
 
     while (isdigit(currentChar))
     {
@@ -38,12 +40,13 @@ void getToken()
         if (!isdigit(testExpression[currentIndex + 1]))
         {
             printf("%d --- NUMBER\n", currentToken.value);
-            currentChar = testExpression[++currentIndex];
             break;
         }
         currentChar = testExpression[++currentIndex];
     }
 
+    currentChar = testExpression[++currentIndex];
+    
     switch (currentChar)
     {
         case '+':
@@ -88,7 +91,7 @@ void getToken()
 
 void command()
 {
-	int result = expr(); // QUESTION: here or at the bottom of the method?
+	result = expr(); // QUESTION: here or at the bottom of the method?
 	
 	if (currentToken.type == EOL)
     {
@@ -102,8 +105,6 @@ void command()
 
 int expr()
 {
-    int result = term();
-
     while (currentToken.type == PLUS || currentToken.type == MINUS)
     {
         if (currentToken.type == PLUS)
@@ -117,28 +118,57 @@ int expr()
             result -= term();
         }
     }
-
-    getToken();
+    term(); // call term() without doing anything because we're not +/- in this case
+    
+    return result;
 }
 
 int term()
 {
-    
+    while (currentToken.type == MULTIPLY || currentToken.type == DIVIDE)
+    {
+        if (currentToken.type == MULTIPLY)
+        {
+            match(MULTIPLY);
+            result *= power();
+        }
+        else
+        {
+            match(DIVIDE);
+            result /= power();
+        }
+    }
+    power();
 }
 
 int power()
 {
-
+    while (currentToken.type == POWER) // TODO
+    {
+        match(POWER);
+        result = pow(result, power());
+    }
+    factor();
 }
 
 int factor()
 {
-
+    while (currentToken.type == POWER) // TODO
+    {
+        match(POWER);
+        result = pow(result, power());
+    }
+    factor1();
 }
 
 int factor1()
 {
-
+    while (currentToken.type == POWER)
+    {
+        match(POWER);
+        result = pow(result, power());
+    }
+    // should just have a number left?
 }
 
 void error()
@@ -150,6 +180,7 @@ void match(TokenType type)
 {
     if (currentToken.type == type)
     {
+        currentIndex++;
         getToken();
     }
 }
