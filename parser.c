@@ -46,8 +46,8 @@ void getToken()
         currentChar = testExpression[++currentIndex];
     }
 
-    // get next character (won't be a number)
-    currentChar = testExpression[++currentIndex];
+    // get next character (shouldn't be a number)
+    currentChar = testExpression[++currentIndex]; // BUG: it's a number after more than one operator
 
     // determine opperator
     switch (currentChar)
@@ -109,26 +109,32 @@ void command()
 
 int expr()
 {
+    int result = 0;
+    
     while (currentToken.type == PLUS || currentToken.type == MINUS)
     {
         if (currentToken.type == PLUS)
         {
             match(PLUS);
             result += term();
+            return result; // QUESTION return here?
         }
         else
         {
             match(MINUS);
             result -= term();
+            return result;
         }
     }
-    term(); // call term() without doing anything because we're not +/- in this case
     
-    // return result;
+    result = term(); // call term() without doing anything because we're not +/- in this case
+    return result;
 }
 
 int term()
 {
+    int result = 0;
+    
     while (currentToken.type == MULTIPLY || currentToken.type == DIVIDE)
     {
         if (currentToken.type == MULTIPLY)
@@ -147,40 +153,50 @@ int term()
             result /= power();
         }
     }
-    power();
+    
+    result = power();
     return result;
 }
 
 int power()
 {
+    int result = 0;
+    
     while (currentToken.type == POWER)
     {
         match(POWER);
         result = pow(result, power()); // TODO
     }
-    factor();
+    
+    result = factor();
     return result;
 }
 
 int factor()
 {
+    int result = 0;
+    
     while (currentToken.type == POWER) // TODO
     {
         match(POWER);
         result = pow(result, power());
     }
-    factor1();
+    
+    result = factor1();
     return result;
 }
 
 int factor1()
 {
+    int result = 0;
+    
     while (currentToken.type == POWER)
     {
         match(POWER);
         result = pow(result, power());
     }
-    return result;
+    
+    return currentToken.value;
 }
 
 void error()
