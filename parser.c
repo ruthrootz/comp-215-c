@@ -13,7 +13,7 @@ struct Token currentToken; // stores the current token
 int currentIndex = 0; // for stepping through the expression
 int result = 0; // stores result of expression
 
-char testExpression[] = "511+5";
+char testExpression[] = "511+5-(6^2)";
 
 int main(void)
 {
@@ -117,13 +117,11 @@ int expr()
         {
             match(PLUS);
             result += term();
-            return result; // QUESTION return here?
         }
         else
         {
             match(MINUS);
             result -= term();
-            return result;
         }
     }
     
@@ -196,6 +194,7 @@ int factor1()
         result = pow(result, power());
     }
     
+    // TODO: keep going if we're not at the end yet
     return currentToken.value;
 }
 
