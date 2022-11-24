@@ -9,30 +9,31 @@
 #include <ctype.h>
 #include "parser.h"
 
-// global variable that stores the current token
-struct Token currentToken;
-int currentIndex = 0;
-int result = 0;
+struct Token currentToken; // stores the current token
+int currentIndex = 0; // for stepping through the expression
+int result = 0; // stores result of expression
+
 char testExpression[] = "511+5";
 
 int main(void)
 {
-    // TODO: add comments
     parse();
     return 0;
 }
 
 void parse(char input[21])
 {
-    getToken();
-    command();
+    getToken(); // get the first token
+    command(); // will do the parsing and print the result
 }
 
 void getToken()
 {
+    // get the current character and reset the current token's value
     int currentChar = testExpression[currentIndex];
     currentToken.value = 0;
 
+    // get the number value if the current token is a number
     while (isdigit(currentChar))
     {
         currentToken.type = NUMBER;
@@ -45,8 +46,10 @@ void getToken()
         currentChar = testExpression[++currentIndex];
     }
 
+    // get next character (won't be a number)
     currentChar = testExpression[++currentIndex];
-    
+
+    // determine opperator
     switch (currentChar)
     {
         case '+':
@@ -92,7 +95,8 @@ void getToken()
 void command()
 {
 	result = expr(); // QUESTION: here or at the bottom of the method?
-	
+
+    // exit conditions...
 	if (currentToken.type == EOL)
     {
 		printf("\nresult: %d\n", result);
