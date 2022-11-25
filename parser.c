@@ -11,7 +11,7 @@
 
 struct Token currentToken; // stores the current token
 int currentIndex = -1; // for stepping through the expression
-char testExpression[] = "12+34";
+char testExpression[] = "12+34^2-(4^2)";
 
 int main(void)
 {
@@ -44,7 +44,7 @@ void getToken()
         {
             printf("%d --- NUMBER\n", currentToken.value);
             currentChar = testExpression[++currentIndex];
-            break; // QUESTION: turn this into a return?
+            break;
         }
         currentChar = testExpression[++currentIndex];
     }
@@ -134,7 +134,7 @@ int term()
 {
     int result = 0;
     
-    while (currentToken.type == MULTIPLY || currentToken.type == DIVIDE)
+    while (currentToken.type == MULTIPLY || currentToken.type == DIVIDE || currentToken.type == REMAINDER)
     {
         if (currentToken.type == MULTIPLY)
         {
