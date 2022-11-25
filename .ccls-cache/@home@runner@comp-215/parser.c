@@ -13,7 +13,7 @@ struct Token currentToken; // stores the current token
 int currentIndex = -1; // for stepping through the expression
 int result = 0; // stores result of expression
 
-char testExpression[] = "511+5-(6^2)";
+char testExpression[] = "511+5-((6^2))";
 
 int main(void)
 {
@@ -46,9 +46,6 @@ void getToken()
         }
         currentChar = testExpression[++currentIndex];
     }
-
-    // get next character (shouldn't be a number)
-    // currentChar = testExpression[++currentIndex]; // BUG: it's a number after more than one operator
 
     // determine opperator
     switch (currentChar)
@@ -95,7 +92,7 @@ void getToken()
 
 void command()
 {
-	result = expr(); // QUESTION: here or at the bottom of the method?
+	result = expr();
 
     // exit conditions...
 	if (currentToken.type == EOL)
@@ -163,8 +160,8 @@ int power()
     
     while (currentToken.type == POWER)
     {
+        result = pow(result, factor()); // TODO
         match(POWER);
-        result = pow(result, power()); // TODO
     }
     
     result = factor();
@@ -191,13 +188,12 @@ int factor1()
     
     while (currentToken.type == LPAREN)
     {
-        match(LPAREN);
         result = expr();
+        match(LPAREN); // BUG
     }
     
-    // TODO: keep going if we're not at the end yet
+    // QUESTION: keep going if we're not at the end yet
     match(currentToken.type);
-    // return result;
     return currentToken.value; // ???
 }
 
