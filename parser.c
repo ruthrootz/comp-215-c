@@ -13,7 +13,7 @@ struct Token currentToken; // stores the current token
 int currentIndex = -1; // for stepping through the expression
 int result = 0; // stores result of expression
 
-char testExpression[] = "1+11-3";
+char testExpression[] = "1-11";
 
 int main(void)
 {
@@ -21,7 +21,7 @@ int main(void)
     return 0;
 }
 
-void parse(char input[21])
+void parse()
 {
     getToken(); // get the first token
     command(); // do the parsing and print the result
@@ -117,13 +117,13 @@ int expr()
     {
         if (currentToken.type == PLUS)
         {
-            result += term();
             match(PLUS);
+            result += term();
         }
         else
         {
-            result -= term();
             match(MINUS);
+            result -= term();
         }
         return result;
     }
@@ -140,18 +140,18 @@ int term()
     {
         if (currentToken.type == MULTIPLY)
         {
-            result *= power();
             match(MULTIPLY);
+            result *= power();
         }
         else if (currentToken.type == REMAINDER)
         {
-            result %= power();
             match(REMAINDER);
+            result %= power();
         }
         else
         {
-            result /= power();
             match(DIVIDE);
+            result /= power();
         }
         return result;
     }
@@ -166,8 +166,8 @@ int power()
     
     while (currentToken.type == POWER)
     {
-        result = pow(result, factor());
         match(POWER);
+        result = pow(result, factor());
         return result;
     }
     
@@ -181,8 +181,8 @@ int factor()
     
     while (currentToken.type == MINUS)
     {
-        result -= factor1();
         match(MINUS);
+        result -= factor1();
         return result;
     }
     
