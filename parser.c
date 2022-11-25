@@ -202,13 +202,7 @@ int factor1()
     }
     
     result = currentToken.value;
-    // getToken(); // keep going because we're not at the end yet
-    return result;
-}
-
-void error()
-{
-    printf("ERROR OCCURED");
+    return result; // we're at the end of the grammar; return the terminal (a number)
 }
 
 void match(TokenType type)
@@ -217,4 +211,9 @@ void match(TokenType type)
     {
         getToken();
     }
+}
+
+void error()
+{
+    printf("ERROR OCCURED");
 }
