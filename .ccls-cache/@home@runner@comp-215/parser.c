@@ -13,7 +13,7 @@ struct Token currentToken; // stores the current token
 int currentIndex = -1; // for stepping through the expression
 int result = 0; // stores result of expression
 
-char testExpression[] = "11";
+char testExpression[] = "1+11";
 
 int main(void)
 {
@@ -31,6 +31,7 @@ void getToken()
 {
     // get the current character and reset the current token's value
     int currentChar = testExpression[++currentIndex];
+    currentToken.value = 0;
     if (currentToken.type == EOL)
     {
         return;
@@ -124,6 +125,7 @@ int expr()
             result -= term();
             match(MINUS);
         }
+        return result;
     }
     
     result = term(); // call term() without doing anything because there's no +/-
@@ -151,6 +153,7 @@ int term()
             result /= power();
             match(DIVIDE);
         }
+        return result;
     }
     
     result = power();
@@ -163,8 +166,9 @@ int power()
     
     while (currentToken.type == POWER)
     {
-        result = pow(result, factor()); // TODO
+        result = pow(result, factor());
         match(POWER);
+        return result;
     }
     
     result = factor();
@@ -175,10 +179,11 @@ int factor()
 {
     int result = 0;
     
-    while (currentToken.type == MINUS) // TODO
+    while (currentToken.type == MINUS)
     {
         result -= factor1();
         match(MINUS);
+        return result;
     }
     
     result = factor1();
@@ -193,6 +198,7 @@ int factor1()
     {
         match(LPAREN);
         result = expr();
+        return result;
     }
     
     if (currentToken.type == NUMBER)
@@ -202,6 +208,7 @@ int factor1()
     else
     {
         getToken(); // keep going because we're not at the end yet
+        return currentToken.value;
     }
 }
 
