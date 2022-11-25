@@ -13,7 +13,7 @@ struct Token currentToken; // stores the current token
 int currentIndex = -1; // for stepping through the expression
 int result = 0; // stores result of expression
 
-char testExpression[] = "511+5-((600/2+(34)))";
+char testExpression[] = "11";
 
 int main(void)
 {
@@ -31,7 +31,10 @@ void getToken()
 {
     // get the current character and reset the current token's value
     int currentChar = testExpression[++currentIndex];
-    currentToken.value = 0;
+    if (currentToken.type == EOL)
+    {
+        return;
+    }
 
     // get the number value if the current token is a number
     while (isdigit(currentChar))
@@ -192,9 +195,14 @@ int factor1()
         result = expr();
     }
     
-    // QUESTION: keep going if we're not at the end yet?
-    match(currentToken.type);
-    return currentToken.value;
+    if (currentToken.type == NUMBER)
+    {
+        return currentToken.value;
+    }
+    else
+    {
+        getToken(); // keep going because we're not at the end yet
+    }
 }
 
 void error()
