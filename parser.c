@@ -188,13 +188,13 @@ int factor1()
     
     while (currentToken.type == LPAREN)
     {
+        match(LPAREN);
         result = expr();
-        match(LPAREN); // BUG
     }
     
     // QUESTION: keep going if we're not at the end yet?
     match(currentToken.type);
-    return currentToken.value; // ???
+    return currentToken.value;
 }
 
 void error()
