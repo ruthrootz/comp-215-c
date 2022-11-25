@@ -10,7 +10,7 @@
 #include "parser.h"
 
 struct Token currentToken; // stores the current token
-int currentIndex = 0; // for stepping through the expression
+int currentIndex = -1; // for stepping through the expression
 int result = 0; // stores result of expression
 
 char testExpression[] = "511+5-(6^2)";
@@ -24,13 +24,13 @@ int main(void)
 void parse(char input[21])
 {
     getToken(); // get the first token
-    command(); // will do the parsing and print the result
+    command(); // do the parsing and print the result
 }
 
 void getToken()
 {
     // get the current character and reset the current token's value
-    int currentChar = testExpression[currentIndex];
+    int currentChar = testExpression[++currentIndex];
     currentToken.value = 0;
 
     // get the number value if the current token is a number
@@ -41,13 +41,14 @@ void getToken()
         if (!isdigit(testExpression[currentIndex + 1]))
         {
             printf("%d --- NUMBER\n", currentToken.value);
+            currentChar = testExpression[++currentIndex];
             break;
         }
         currentChar = testExpression[++currentIndex];
     }
 
     // get next character (shouldn't be a number)
-    currentChar = testExpression[++currentIndex]; // BUG: it's a number after more than one operator
+    // currentChar = testExpression[++currentIndex]; // BUG: it's a number after more than one operator
 
     // determine opperator
     switch (currentChar)
@@ -115,17 +116,17 @@ int expr()
     {
         if (currentToken.type == PLUS)
         {
-            match(PLUS);
             result += term();
+            match(PLUS);
         }
         else
         {
-            match(MINUS);
             result -= term();
+            match(MINUS);
         }
     }
     
-    result = term(); // call term() without doing anything because we're not +/- in this case
+    result = term(); // call term() without doing anything because there's no +/-
     return result;
 }
 
@@ -137,18 +138,18 @@ int term()
     {
         if (currentToken.type == MULTIPLY)
         {
-            match(MULTIPLY);
             result *= power();
+            match(MULTIPLY);
         }
         else if (currentToken.type == REMAINDER)
         {
-            match(REMAINDER);
             result %= power();
+            match(REMAINDER);
         }
         else
         {
-            match(DIVIDE);
             result /= power();
+            match(DIVIDE);
         }
     }
     
@@ -174,10 +175,10 @@ int factor()
 {
     int result = 0;
     
-    while (currentToken.type == POWER) // TODO
+    while (currentToken.type == MINUS) // TODO
     {
-        match(POWER);
-        result = pow(result, power());
+        result -= factor1();
+        match(MINUS);
     }
     
     result = factor1();
@@ -188,14 +189,16 @@ int factor1()
 {
     int result = 0;
     
-    while (currentToken.type == POWER)
+    while (currentToken.type == LPAREN)
     {
-        match(POWER);
-        result = pow(result, power());
+        match(LPAREN);
+        result = expr();
     }
     
     // TODO: keep going if we're not at the end yet
-    return currentToken.value;
+    match(currentToken.type);
+    // return result;
+    return currentToken.value; // ???
 }
 
 void error()
@@ -207,7 +210,6 @@ void match(TokenType type)
 {
     if (currentToken.type == type)
     {
-        currentIndex++;
         getToken();
     }
 }
