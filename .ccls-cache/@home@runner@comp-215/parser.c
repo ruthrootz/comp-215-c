@@ -11,7 +11,7 @@
 
 struct Token currentToken; // stores the current token
 int currentIndex = -1; // for stepping through the expression
-char testExpression[] = "1-11*(2)";
+char testExpression[] = "12+34";
 
 int main(void)
 {
