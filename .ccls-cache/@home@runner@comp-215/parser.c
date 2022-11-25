@@ -13,7 +13,7 @@ struct Token currentToken; // stores the current token
 int currentIndex = -1; // for stepping through the expression
 int result = 0; // stores result of expression
 
-char testExpression[] = "1+11";
+char testExpression[] = "1+11-3";
 
 int main(void)
 {
@@ -201,15 +201,9 @@ int factor1()
         return result;
     }
     
-    if (currentToken.type == NUMBER)
-    {
-        return currentToken.value;
-    }
-    else
-    {
-        getToken(); // keep going because we're not at the end yet
-        return currentToken.value;
-    }
+    result = currentToken.value;
+    // getToken(); // keep going because we're not at the end yet
+    return result;
 }
 
 void error()
