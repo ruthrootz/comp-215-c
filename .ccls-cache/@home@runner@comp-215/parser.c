@@ -13,7 +13,7 @@ struct Token currentToken; // stores the current token
 int currentIndex = -1; // for stepping through the expression
 int result = 0; // stores result of expression
 
-char testExpression[] = "511+5-((6^2))";
+char testExpression[] = "511+5-((600/2+(34)))";
 
 int main(void)
 {
