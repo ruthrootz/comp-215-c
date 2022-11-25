@@ -117,7 +117,7 @@ int expr()
     {
         if (currentToken.type == PLUS)
         {
-            match(PLUS);
+            match(PLUS); // find the number that will be added in the line below
             result += term();
         }
         else

@@ -13,7 +13,7 @@ struct Token currentToken; // stores the current token
 int currentIndex = -1; // for stepping through the expression
 int result = 0; // stores result of expression
 
-char testExpression[] = "1-11+1";
+char testExpression[] = "1-11";
 
 int main(void)
 {
@@ -117,7 +117,7 @@ int expr()
     {
         if (currentToken.type == PLUS)
         {
-            match(PLUS);
+            match(PLUS); // find the number that will be added in the line below
             result += term();
         }
         else
