@@ -11,9 +11,7 @@
 
 struct Token currentToken; // stores the current token
 int currentIndex = -1; // for stepping through the expression
-int result = 0; // stores result of expression
-
-char testExpression[] = "1-11";
+char testExpression[] = "1-11*(2)";
 
 int main(void)
 {
@@ -46,7 +44,7 @@ void getToken()
         {
             printf("%d --- NUMBER\n", currentToken.value);
             currentChar = testExpression[++currentIndex];
-            break;
+            break; // QUESTION: turn this into a return?
         }
         currentChar = testExpression[++currentIndex];
     }
@@ -96,7 +94,7 @@ void getToken()
 
 void command()
 {
-	result = expr();
+	int result = expr();
 
     // exit conditions...
 	if (currentToken.type == EOL)
@@ -193,14 +191,21 @@ int factor()
 int factor1()
 {
     int result = 0;
-    
-    while (currentToken.type == LPAREN)
+
+    while (currentToken.type == LPAREN || currentToken.type == RPAREN)
     {
-        match(LPAREN);
-        result = expr();
-        return result;
+        if (currentToken.type == LPAREN)
+        {
+            match(LPAREN);
+            result = expr();
+        }
+        else
+        {
+            match(RPAREN);
+            result = expr();
+        }
     }
-    
+
     result = currentToken.value;
     return result; // we're at the end of the grammar; return the terminal (a number)
 }

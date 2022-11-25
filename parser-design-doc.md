@@ -1,9 +1,11 @@
 # design for EBNF parser
 
-A global variable, `currentToken`, holds a `Token` and gets updated with `getToken()`. The `main()` function gets a mathematical expression from the user.
+global variables:
+- `currentToken`, holds a `Token` and gets updated with `getToken()`
+- `currentIndex` is the index of the character being parsed within the `testExpression`
 
 ## parse()
-Once input is received...
+This will get the first token (a value and the )
 
 ## getToken()
 The first token is set by calling `getToken()` in `parse()`...
