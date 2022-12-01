@@ -1,6 +1,6 @@
 /*
     name: Ruth Oldja
-    date: 11/16/2022
+    date: 11/25/2022
     purpose: parse mathematical expression and calculate result using EBNF grammar
 */
 
@@ -44,7 +44,7 @@ void getToken()
         {
             printf("%d --- NUMBER\n", currentToken.value);
             currentChar = testExpression[++currentIndex];
-            break;
+            break; // QUESTION: should I be returning here?
         }
         currentChar = testExpression[++currentIndex];
     }
